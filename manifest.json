@@ -1,0 +1,53 @@
+{
+    "manifest_version": 2,
+    "name": "Live Coronavirus status",
+    "description": "Real time live Coronavirus updates",
+    "version": "1.0.0",
+    "short_name": "Coronavirus Tracker",
+    "version_name": "coronatracker-1.0",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "background"
+    ],
+    "content_security_policy": "script-src 'sha256-xgSe9e4bUQlmSCi8bnI5e18dJWMjs4ywwBD+uK3ci/o=' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php 'self';style-src 'unsafe-inline' 'unsafe-eval' 'self'; object-src 'self'",
+    "web_accessible_resources": [
+        "*"
+    ],
+    "icons": {
+        "128": "./assets/images/coronavirus-logo.png" 
+    },
+    "browser_action": {
+    "default_title": "Coronatime",
+    "default_icon": {
+        "128": "./assets/images/coronavirus-logo.png"
+     },
+     "default_popup": "index.html"
+    },
+    "background": {
+        "scripts": [
+            "./assets/js/jquery.js",
+            "./assets/js/shCore.js",  
+            "./assets/js/demo.js", 
+            "./assets/js/jquery.dataTables.js"
+        ],
+        "persistent": true
+    },
+    "content_scripts":[
+    {
+        "matches": ["http://*/*", "https://*/*"],
+        "css":[
+            "./assets/css/jquery.dataTables.css", 
+            "./assets/css/shCore.css", 
+            "./assets/css/demo.css"
+        ],
+        "js": [
+            "./assets/js/jquery.js",
+            "./assets/js/shCore.js",  
+            "./assets/js/demo.js", 
+            "./assets/js/jquery.dataTables.js"
+        ],
+        "run_at": "document_start"
+    }  
+  ]    
+}
