@@ -5,9 +5,6 @@
     "version": "1.0.0",
     "short_name": "Coronavirus Tracker",
     "version_name": "coronatracker-1.0",
-    "permissions": [
-        "activeTab"
-    ],
     "content_security_policy": "script-src https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php 'sha256-qKx8KTS8kr0e7FRPwRrEj3a8uthuh2YRL7WU/TlkzoQ=' 'self';style-src 'unsafe-inline' 'unsafe-eval' 'self'; object-src 'self'",
     "icons": {
         "128": "corona128.png" 
