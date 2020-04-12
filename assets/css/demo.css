@@ -14,7 +14,7 @@ body.dt-example-bootstrap {
 	line-height: 1.42857143;
 }
 
-div.container {
+div.coronavirus-container {
 	max-width: 980px;
 	margin: 0 auto;
 }
@@ -343,7 +343,7 @@ div.column_half {
 
 
 @media only screen and (max-width : 979px) {
-	div.container,
+	div.coronavirus-container,
 	div.footer {
 		padding: 0 1em;
 	}

@@ -6,21 +6,16 @@
     "short_name": "Coronavirus Tracker",
     "version_name": "coronatracker-1.0",
     "permissions": [
-        "activeTab",
-        "storage",
-        "background"
+        "activeTab"
     ],
-    "content_security_policy": "script-src 'sha256-xgSe9e4bUQlmSCi8bnI5e18dJWMjs4ywwBD+uK3ci/o=' https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php 'self';style-src 'unsafe-inline' 'unsafe-eval' 'self'; object-src 'self'",
-    "web_accessible_resources": [
-        "*"
-    ],
+    "content_security_policy": "script-src https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php 'sha256-qKx8KTS8kr0e7FRPwRrEj3a8uthuh2YRL7WU/TlkzoQ=' 'self';style-src 'unsafe-inline' 'unsafe-eval' 'self'; object-src 'self'",
     "icons": {
-        "128": "./assets/images/coronavirus-logo.png" 
+        "128": "corona128.png" 
     },
     "browser_action": {
     "default_title": "Coronatime",
     "default_icon": {
-        "128": "./assets/images/coronavirus-logo.png"
+        "128": "corona128.png"
      },
      "default_popup": "index.html"
     },
@@ -46,8 +41,7 @@
             "./assets/js/shCore.js",  
             "./assets/js/demo.js", 
             "./assets/js/jquery.dataTables.js"
-        ],
-        "run_at": "document_start"
+        ]
     }  
   ]    
 }

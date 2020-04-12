@@ -2,26 +2,21 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/ico" href="./assets//images/coronavirus-logo.png">
+	<link rel="shortcut icon" type="image/ico" href="./assets/images/coronavirus-logo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
-	<!-- <meta http-equiv="Content-Security-Poli																																																		cy" content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src: 'sha256-xgSe9e4bUQlmSCi8bnI5e18dJWMjs4ywwBD+uK3ci/o='"> -->
-	<!-- s -->
 	<title>Coronavirus Tracker</title>
 	<link rel="stylesheet" type="text/css" href="./assets/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="./assets/css/shCore.css">
 	<link rel="stylesheet" type="text/css" href="./assets/css/demo.css">
-	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
-	<!-- <link rel="stylesheet" type="text/css" href="./assets/css/font.css"> -->
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://platform.linkedin.com "> -->
-	<script type="text/javascript" language="javascript" src="./assets/js/jquery.js"></script>
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" /> -->
+    <script type="text/javascript" language="javascript" src="./assets/js/jquery.js"></script>
 	<script type="text/javascript" language="javascript" src="./assets/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="./assets/js/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="./assets/js/demo.js"></script>
 	<script type="text/javascript" language="javascript" class="init"></script>
-	<script src="popup.js"></script>
 </head>
 <body class="dt-example">
-	<div class="container">
+	<div class="coronavirus-container">
 		<section>
 			<h1 class="rainbow">Coronavirus Status
 				<img class="coronaviruslogo" src="./assets/images/coronoavirus.png" width=45 height=45></img>
@@ -44,24 +39,28 @@
 				</thead>
 				<tfoot>
 					<tr>
-						<th>Country</th>
-						<th>Cases</th>
-						<th>Deaths</th>
-						<th>Total recovered</th>
-						<th>New deaths</th>
-						<th>New cases</th>
-						<th>Serious critical</th>
-						<th>Active cases</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
 					</tr>
 				</tfoot>
 			</table>
 		</section>
+		<a href="https://chrome.google.com/webstore/detail/codeztech-launcher/gcciplpdnddimongoimloaabpincoloc?hl=en-US&gclid=Cj0KCQjw-Mr0BRDyARIsAKEFbec3FRF77j10UpAeRGDS9ye4Dh2LHVpQEcO_7vXOM0UsS4u7YuHUjN0aAh7UEALw_wcB" target="_blank"><b>Click here - To Easily Access Codez Tech content</b></a>
 	</div>
 </body>
 <script type="text/javascript" language="javascript">
 	var myTable;
+	var serious_critical="120";
+	var active_cases="220";
+	var worldresult = [];
 	function bindItemTable() {
-        myTable = $("#coronavirustracker").DataTable({
+		myTable = $("#coronavirustracker").DataTable({
 			"deferRender": true,
 			"searching": true,
 			"destroy": true,
@@ -75,10 +74,36 @@
 			"order": [[ 1, "desc" ]],
             "info": true,
             "autoWidth": false,
-            "sDom": 'lfrtip'
+			"sDom": 'lfrtip',
+			"footerCallback": function( tfoot, data, start, end, display ) {
+				$.ajax({
+					url: "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php", 
+					headers: {
+						'x-rapidapi-host':'coronavirus-monitor.p.rapidapi.com',
+						'x-rapidapi-key':'558acf6479msh41736090b530a08p18f404jsnf5d9b34714dc',
+						'Content-Type':'application/json'
+					},
+					method: "GET",
+					dataType: 'json',
+					crossDomain: true, 
+					success:function(data) {
+						console.log(data);
+						$(tfoot).find('th').eq(0).html("Total");
+						$(tfoot).find('th').eq(1).html(data.total_cases);
+						$(tfoot).find('th').eq(2).html(data.total_deaths);
+						$(tfoot).find('th').eq(3).html(data.total_recovered);
+						$(tfoot).find('th').eq(4).html(data.new_deaths);
+						$(tfoot).find('th').eq(5).html(data.new_cases);
+						$(tfoot).find('th').eq(6).html( "----" );
+						$(tfoot).find('th').eq(7).html( "----" );
+					},failure: function () {
+						$("#coronavirustracker").append("Error when fetching world wide data");
+					}
+				});
+			}
         });
 	}
-	
+
 	function getCoronavirusstatus() {
 		$.ajax({
 			url: "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php", 
@@ -91,7 +116,6 @@
 			dataType: 'json',
 			crossDomain: true, 
 			success:function(data) {
-				console.log(data);
 				var jsonObject = data.countries_stat;
                 var result = jsonObject.map(function (item) {
                     var result = [];
@@ -119,7 +143,7 @@
 		getCoronavirusstatus();
         setInterval(()=>{
 			bindItemTable();
-            getCoronavirusstatus();
+		    getCoronavirusstatus();
         },15000)
     })
 </script>
