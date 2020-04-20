@@ -8,8 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="./assets/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="./assets/css/shCore.css">
 	<link rel="stylesheet" type="text/css" href="./assets/css/demo.css">
-	<!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" /> -->
-    <script type="text/javascript" language="javascript" src="./assets/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="./assets/js/jquery.js"></script>
 	<script type="text/javascript" language="javascript" src="./assets/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="./assets/js/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="./assets/js/demo.js"></script>
@@ -20,7 +19,7 @@
 		<section>
 			<h1 class="rainbow">Coronavirus Status
 				<img class="coronaviruslogo" src="./assets/images/coronoavirus.png" width=45 height=45></img>
-				<span style="color: black;">Version 1.0.0 </span>
+				<span style="color: black;">Version 1.1.0 </span>
 				<span style="color: black;font-size: 14px;"> &nbsp; © CodezTech</span>
 			</h1>
 			<div class="demo-html"></div>
@@ -94,8 +93,8 @@
 						$(tfoot).find('th').eq(3).html(data.total_recovered);
 						$(tfoot).find('th').eq(4).html(data.new_deaths);
 						$(tfoot).find('th').eq(5).html(data.new_cases);
-						$(tfoot).find('th').eq(6).html( "----" );
-						$(tfoot).find('th').eq(7).html( "----" );
+						$(tfoot).find('th').eq(6).html(data.serious_critical);
+						$(tfoot).find('th').eq(7).html(data.active_cases);
 					},failure: function () {
 						$("#coronavirustracker").append("Error when fetching world wide data");
 					}

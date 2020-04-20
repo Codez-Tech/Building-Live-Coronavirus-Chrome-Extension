@@ -2,10 +2,10 @@
     "manifest_version": 2,
     "name": "Live Coronavirus status",
     "description": "Real time live Coronavirus updates",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "short_name": "Coronavirus Tracker",
     "version_name": "coronatracker-1.0",
-    "content_security_policy": "script-src https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php 'sha256-qKx8KTS8kr0e7FRPwRrEj3a8uthuh2YRL7WU/TlkzoQ=' 'self';style-src 'unsafe-inline' 'unsafe-eval' 'self'; object-src 'self'",
+    "content_security_policy": "script-src https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php 'sha256-fYzMt+XmqxxG9xsg3AAdPSnRVzESbzYmVfYTFhb9w7g=' 'self';style-src 'unsafe-inline' 'unsafe-eval' 'self'; object-src 'self'",
     "icons": {
         "128": "corona128.png" 
     },
